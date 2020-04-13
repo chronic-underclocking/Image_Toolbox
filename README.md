@@ -18,4 +18,4 @@
     
  **- ASCII Art generator:**
     Transforms an image to ASCII art
-    ![Emma Stone drawn in ASCII](https://ibb.co/LP7xSWZ)
+    ![Emma Stone drawn in ASCII](https://i.ibb.co/KGv26kr/notWeird.png)
