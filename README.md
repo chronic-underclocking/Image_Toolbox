@@ -1,6 +1,8 @@
 # Image Toolbox
  An image manipulation program written in Java.
  
+  ![Interface](https://i.ibb.co/J7jMHrT/GUI.png)
+ 
  # Features:
  
  **- Basic Tools:**
