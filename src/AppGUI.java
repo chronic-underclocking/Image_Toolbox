@@ -117,13 +117,13 @@ public class AppGUI
 		picLabel.addMouseListener(new MouseAdapter() 
 		{
 			public void mousePressed(MouseEvent me) 
-	        {
+	        	{
 				ClickX = newClickX;
 				ClickY = newClickY;
 				newClickX = me.getX();
 				newClickY = me.getY();
-	        }
-	     });
+			}
+	     	});
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(12, 0, PANEL_WIDTH, PANEL_HEIGHT);
@@ -143,25 +143,25 @@ public class AppGUI
 			{
 
 				JFileChooser fileChooser = new JFileChooser();
-		        int returnValue = fileChooser.showOpenDialog(null);
-		        if (returnValue == JFileChooser.APPROVE_OPTION) 
-		        {
-		        	location = fileChooser.getSelectedFile().getAbsolutePath();
-		        	location = imgIO.fixBackslash(location);
-		        	
-		        	if(imgIO.validateType(location))
+		        	int returnValue = fileChooser.showOpenDialog(null);
+		        	if (returnValue == JFileChooser.APPROVE_OPTION) 
 		        	{
-		        		img = imgIO.load(location);
-		        		storage.clear();
-		        		storage.add(img);
-		        		display(panel, picLabel);
-		        	}
+		        		location = fileChooser.getSelectedFile().getAbsolutePath();
+		        		location = imgIO.fixBackslash(location);
 		        	
-		        	else
-		        	{
-		        		JOptionPane.showMessageDialog(frmImageToolbox, "Unsupported file type!", "Error", JOptionPane.INFORMATION_MESSAGE);
-		        	}
-		  	    }
+		        		if(imgIO.validateType(location))
+		        		{
+		        			img = imgIO.load(location);
+		        			storage.clear();
+		        			storage.add(img);
+		        			display(panel, picLabel);
+		        		}
+		        	
+		        		else
+			        	{
+		        			JOptionPane.showMessageDialog(frmImageToolbox, "Unsupported file type!", "Error", JOptionPane.INFORMATION_MESSAGE);
+		        		}
+		  	    	}
 			}
 		});
 		mnFile.add(mntmLoad);
