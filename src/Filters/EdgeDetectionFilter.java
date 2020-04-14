@@ -31,30 +31,33 @@ public class EdgeDetectionFilter implements Filter
 	    
 	    	int[][] kernelx =
 	    		{{ -1      ,        0         ,          1},
-	    	 	{ -2      ,        0         ,          2}, 
-	    	 	{ -1      ,        0         ,          1}};
+	    	 	 { -2      ,        0         ,          2}, 
+	    	 	 { -1      ,        0         ,          1}};
 	    
 	    	int[][] kernely =
 	    		{{ -1     ,       -2         ,         -1},
-	    	 	{ 0      ,        0         ,          0}, 
-	    	 	{ 1      ,        2         ,          1}};
+	    	 	 { 0      ,        0         ,          0}, 
+	    	 	 { 1      ,        2         ,          1}};
+
+		int p1, p2, p3, p4, p5, p6, p7, p8 ,p9, gxsum, gysum, gradient;
+		double gval;
 	    
 	    	for (int i = 1; i < width - 1; i++) 
 	    	{
 	        	for (int j = 1; j < height - 1; j++) 
         		{
 	
-		        	int p1 = gray(img.getRGB(i - 1, j - 1));
-				int p2 = gray(img.getRGB(i - 1, j));
-				int p3 = gray(img.getRGB(i - 1, j + 1));
+		        	p1 = gray(img.getRGB(i - 1, j - 1));
+				p2 = gray(img.getRGB(i - 1, j));
+				p3 = gray(img.getRGB(i - 1, j + 1));
 	
-	            		int p4 = gray(img.getRGB(i, j - 1));
-	            		int p5 = gray(img.getRGB(i, j));
-	            		int p6 = gray(img.getRGB(i, j + 1));
+	            		p4 = gray(img.getRGB(i, j - 1));
+	            		p5 = gray(img.getRGB(i, j));
+	            		p6 = gray(img.getRGB(i, j + 1));
 	
-	            		int p7 = gray(img.getRGB(i + 1, j - 1));
-	            		int p8 = gray(img.getRGB(i + 1, j));
-	            		int p9 = gray(img.getRGB(i + 1, j + 1));
+	            		p7 = gray(img.getRGB(i + 1, j - 1));
+	            		p8 = gray(img.getRGB(i + 1, j));
+	            		p9 = gray(img.getRGB(i + 1, j + 1));
 	            
 	            		int pixelNeighborhood[][] = 
 	            			{{p1 ,        p2        ,   p3},
@@ -62,8 +65,8 @@ public class EdgeDetectionFilter implements Filter
 	            	 		{p7 ,        p8        ,   p9}};
 	     
 	
-	            		int gxsum = 0;
-	            		int gysum = 0;
+	            		gxsum = 0;
+	            		gysum = 0;
 	            
 	            		for(int k = 0; k < 3; k++)
 	            		{
@@ -74,8 +77,8 @@ public class EdgeDetectionFilter implements Filter
 	            			}
 	            		}
 	            
-	        	    	double gval = Math.sqrt((gxsum * gxsum) + (gysum * gysum));
-		            	int gradient = (int) gval;
+	        	    	gval = Math.sqrt((gxsum * gxsum) + (gysum * gysum));
+		            	gradient = (int) gval;
 	
 	            		if(maxG < gradient) 
 	            		{
@@ -87,12 +90,13 @@ public class EdgeDetectionFilter implements Filter
 	    	}
 	
 	    	double scale = 255.0 / maxG;
-	
+		int color;
+
 	    	for (int i = 1; i < width - 1; i++)
 	    	{
 	        	for (int j = 1; j < height - 1; j++) 
 	        	{
-	            		int color = resultsArray[i][j];
+	            		color = resultsArray[i][j];
 	            		color = (int)(color * scale);
 	            		color = 0xff000000 | (color << 16) | (color << 8) | color;
 	
