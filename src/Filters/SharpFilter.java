@@ -15,36 +15,38 @@ public class SharpFilter implements Filter
 	    	BufferedImage result = new BufferedImage(width, height, img.getType());
 	    	BufferedImage smoothenedImg = SmoothenFilter.apply(img);
 	    
+	    	int p1, p2, A1, A2, R1, R2, G1, G2, B1, B2, A, R, G, B, p;
+	    
 	    	for(int i = 0; i < width; i++)
-        	{
+	    	{
         		for(int j = 0; j < height; j++)
         		{
-        			int p1 = img.getRGB(i, j);
-        			int p2 = smoothenedImg.getRGB(i, j);
+        			p1 = img.getRGB(i, j);
+        			p2 = smoothenedImg.getRGB(i, j);
         		
-        			int A1 = (p1>>24) & 0xff;
-        			int R1 = (p1>>16) & 0xff;
-        			int G1 = (p1>>8) & 0xff;
-        			int B1 = (p1) & 0xff;
+        			A1 = (p1>>24) & 0xff;
+        			R1 = (p1>>16) & 0xff;
+        			G1 = (p1>>8) & 0xff;
+        			B1 = (p1) & 0xff;
         		
-        			int A2 = (p2>>24) & 0xff;
-        			int R2 = (p2>>16) & 0xff;
-        			int G2 = (p2>>8) & 0xff;
-        			int B2 = (p2) & 0xff;
+        			A2 = (p2>>24) & 0xff;
+        			R2 = (p2>>16) & 0xff;
+        			G2 = (p2>>8) & 0xff;
+        			B2 = (p2) & 0xff;
         		
-        			int A = A1*2 - A2;
-        			int R = R1*2 - R2;
-        			int G = G1*2 - G2;
-        			int B = B1*2 - B2;
+        			A = A1*2 - A2;
+        			R = R1*2 - R2;
+        			G = G1*2 - G2;
+        			B = B1*2 - B2;
         		
         			if(R > 255)
         			{ 
         				R=255;
         			}
-			    	else if(R < 0)
-			    	{
-			    		R=0;
-			    	}
+				else if(R < 0)
+				{
+			   		R=0;
+				}
 			     
 			    	if(G > 255) 
 			    	{
@@ -60,17 +62,17 @@ public class SharpFilter implements Filter
 			    		B = 255;
 			    	}
 			    	else if(B < 0) 
-			    	{	
+			    	{
 			    		B = 0;
 			    	}
         		
-        			int p = (A<<24) | (R<<16) | (G<<8) | B;
+        			p = (A<<24) | (R<<16) | (G<<8) | B;
         		
         			result.setRGB(i,j,p);
         		}
         	}
 	    
-		return result;
+	    	return result;
 	}
 	
 }
