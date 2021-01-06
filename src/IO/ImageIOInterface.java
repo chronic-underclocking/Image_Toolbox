@@ -1,3 +1,5 @@
+package IO;
+
 import java.awt.image.BufferedImage;
 
 interface ImageIOInterface 

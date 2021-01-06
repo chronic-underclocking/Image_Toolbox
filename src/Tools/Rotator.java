@@ -32,6 +32,6 @@ public class Rotator
 			}
 		}
 		
-	    	return rotatedImage;
+	    return rotatedImage;
 	}
 }

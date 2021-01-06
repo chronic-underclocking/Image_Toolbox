@@ -1,3 +1,5 @@
+package IO;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -12,8 +14,8 @@ public class myImageIO implements ImageIOInterface
 		BufferedImage img = null;
 		try 
 		{
-	    		img = ImageIO.read(new File(l));
-	    		return img;
+			img = ImageIO.read(new File(l));
+			return img;
 		} 
 		catch (IOException e) 
 		{
@@ -31,13 +33,13 @@ public class myImageIO implements ImageIOInterface
 			name = name + format;
 			String adjustedL = l.substring(0, l.lastIndexOf("\\"));
 			adjustedL = adjustedL + name;
-		    	File outputfile = new File(adjustedL);
-		    	format = format.substring(1);
-		    	ImageIO.write(im, format, outputfile);
+		    File outputfile = new File(adjustedL);
+		    format = format.substring(1);
+		    ImageIO.write(im, format, outputfile);
 		} 
 		catch (IOException e) 
 		{
-		    	e.printStackTrace();
+		    e.printStackTrace();
 		}
 	}
 	

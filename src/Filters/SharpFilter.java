@@ -9,7 +9,7 @@ public class SharpFilter implements Filter
 	@Override
 	public BufferedImage apply(BufferedImage img) // Unsharp masking technique
 	{
-		int width = img.getWidth();
+			int width = img.getWidth();
 	    	int height = img.getHeight();
 	    
 	    	BufferedImage result = new BufferedImage(width, height, img.getType());
@@ -43,10 +43,10 @@ public class SharpFilter implements Filter
         			{ 
         				R=255;
         			}
-				else if(R < 0)
-				{
-			   		R=0;
-				}
+        			else if(R < 0)
+        			{
+        				R=0;
+        			}
 			     
 			    	if(G > 255) 
 			    	{

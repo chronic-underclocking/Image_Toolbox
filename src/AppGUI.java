@@ -16,6 +16,8 @@ import Filters.BlackAndWhiteFilter;
 import Filters.EdgeDetectionFilter;
 import Filters.SharpFilter;
 import Filters.SmoothFilter;
+import IO.myImageIO;
+import Storage.ImageStorage;
 import Tools.ASCIIWriter;
 import Tools.Cropper;
 import Tools.MirrorFlipper;
@@ -117,13 +119,13 @@ public class AppGUI
 		picLabel.addMouseListener(new MouseAdapter() 
 		{
 			public void mousePressed(MouseEvent me) 
-	        	{
+	        {
 				ClickX = newClickX;
 				ClickY = newClickY;
 				newClickX = me.getX();
 				newClickY = me.getY();
-			}
-	     	});
+	        }
+	     });
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(12, 0, PANEL_WIDTH, PANEL_HEIGHT);
@@ -143,25 +145,25 @@ public class AppGUI
 			{
 
 				JFileChooser fileChooser = new JFileChooser();
-		        	int returnValue = fileChooser.showOpenDialog(null);
-		        	if (returnValue == JFileChooser.APPROVE_OPTION) 
+		        int returnValue = fileChooser.showOpenDialog(null);
+		        if (returnValue == JFileChooser.APPROVE_OPTION) 
+		        {
+		        	location = fileChooser.getSelectedFile().getAbsolutePath();
+		        	location = imgIO.fixBackslash(location);
+		        	
+		        	if(imgIO.validateType(location))
 		        	{
-		        		location = fileChooser.getSelectedFile().getAbsolutePath();
-		        		location = imgIO.fixBackslash(location);
+		        		img = imgIO.load(location);
+		        		storage.clear();
+		        		storage.add(img);
+		        		display(panel, picLabel);
+		        	}
 		        	
-		        		if(imgIO.validateType(location))
-		        		{
-		        			img = imgIO.load(location);
-		        			storage.clear();
-		        			storage.add(img);
-		        			display(panel, picLabel);
-		        		}
-		        	
-		        		else
-			        	{
-		        			JOptionPane.showMessageDialog(frmImageToolbox, "Unsupported file type!", "Error", JOptionPane.INFORMATION_MESSAGE);
-		        		}
-		  	    	}
+		        	else
+		        	{
+		        		JOptionPane.showMessageDialog(frmImageToolbox, "Unsupported file type!", "Error", JOptionPane.INFORMATION_MESSAGE);
+		        	}
+		  	    }
 			}
 		});
 		mnFile.add(mntmLoad);

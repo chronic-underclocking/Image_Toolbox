@@ -39,17 +39,17 @@ public class EdgeDetectionFilter implements Filter
 	    	 	 { 0      ,        0         ,          0}, 
 	    	 	 { 1      ,        2         ,          1}};
 
-		int p1, p2, p3, p4, p5, p6, p7, p8 ,p9, gxsum, gysum, gradient;
-		double gval;
+	    	int p1, p2, p3, p4, p5, p6, p7, p8 ,p9, gxsum, gysum, gradient;
+	    	double gval;
 	    
 	    	for (int i = 1; i < width - 1; i++) 
 	    	{
 	        	for (int j = 1; j < height - 1; j++) 
         		{
 	
-		        	p1 = gray(img.getRGB(i - 1, j - 1));
-				p2 = gray(img.getRGB(i - 1, j));
-				p3 = gray(img.getRGB(i - 1, j + 1));
+		        		p1 = gray(img.getRGB(i - 1, j - 1));
+		        		p2 = gray(img.getRGB(i - 1, j));
+		        		p3 = gray(img.getRGB(i - 1, j + 1));
 	
 	            		p4 = gray(img.getRGB(i, j - 1));
 	            		p5 = gray(img.getRGB(i, j));
@@ -90,7 +90,7 @@ public class EdgeDetectionFilter implements Filter
 	    	}
 	
 	    	double scale = 255.0 / maxG;
-		int color;
+	    	int color;
 
 	    	for (int i = 1; i < width - 1; i++)
 	    	{
@@ -118,7 +118,7 @@ public class EdgeDetectionFilter implements Filter
 	    		result.setRGB(width-1, i, black);
 	    	}
 	
-	   	return result;
+	    	return result;
 	}
 	
 }
